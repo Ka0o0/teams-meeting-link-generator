@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace teamslink
 {
@@ -24,7 +24,7 @@ namespace teamslink
                 if(File.Exists(settingsFileLocation)) {
                     try {
                         var json = File.ReadAllText(settingsFileLocation);
-                        var settings = JsonConvert.DeserializeObject<Settings>(json);
+                        var settings = JsonSerializer.Deserialize<Settings>(json);
                         return settings;
                     } catch(Exception) {
                         Console.Error.WriteLine("Unknown error occured while reading " + settingsFileLocation + " will try next one.");
