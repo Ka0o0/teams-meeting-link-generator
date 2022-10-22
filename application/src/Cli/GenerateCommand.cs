@@ -16,7 +16,7 @@ namespace teamslink
         {
             var subjectOptions = new Option<string>(new[] { "--subject", "-s" }, () => "Meeting", "Specifies the subject for the meeting. This will be shown e.g. if you click on the link in the browser or before joining the meeting.");
             this.AddOption(subjectOptions);
-            this.Handler = CommandHandler.Create<string>(this.InvokeAsync);
+            this.SetHandler(this.InvokeAsync, subjectOptions);
         }
 
         private async Task<int> InvokeAsync(string subject)

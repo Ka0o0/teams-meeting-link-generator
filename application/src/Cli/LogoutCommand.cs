@@ -4,16 +4,16 @@ using System.Threading.Tasks;
 
 namespace teamslink
 {
-    class LogoutCommand : Command, ICommandHandler
+    class LogoutCommand : Command
     {
         private static string NAME = "logout";
-        private static string DESCRIPTION = 
-@"Remove all access tokens from the system";
+        private static string DESCRIPTION =
+    @"Remove all access tokens from the system";
 
 
         public LogoutCommand() : base(NAME, DESCRIPTION)
         {
-            this.Handler = this;
+            this.SetHandler(this.InvokeAsync);
         }
 
         public async Task<int> InvokeAsync(InvocationContext context)
