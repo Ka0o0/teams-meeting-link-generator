@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using Microsoft.Identity.Client.Extensions.Msal;
+using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Abstractions.Authentication;
 
 namespace teamslink
 {
@@ -102,10 +102,9 @@ namespace teamslink
         // This is the required function to implement IAuthenticationProvider
         // The Graph SDK will call this function each time it makes a Graph
         // call.
-        public async Task AuthenticateRequestAsync(HttpRequestMessage requestMessage)
+        public async Task AuthenticateRequestAsync(RequestInformation request, Dictionary<string, object> additionalAuthenticationContext = null, CancellationToken cancellationToken = default)
         {
-            requestMessage.Headers.Authorization =
-                new AuthenticationHeaderValue("bearer", await GetAccessToken());
+            request.Headers.Add("Authorization", "bearer " + await GetAccessToken());
         }
     }
 }

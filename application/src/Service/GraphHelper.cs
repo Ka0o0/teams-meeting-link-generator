@@ -1,6 +1,8 @@
-using Microsoft.Graph;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Graph;
+using Microsoft.Graph.Models;
+using Microsoft.Kiota.Abstractions.Authentication;
 
 namespace teamslink
 {
@@ -18,11 +20,6 @@ namespace teamslink
             {
                 // GET /me
                 return await graphClient.Me
-                    .Request()
-                    .Select(u => new{
-                        u.DisplayName,
-                        u.MailboxSettings
-                    })
                     .GetAsync();
             }
             catch (ServiceException ex)
@@ -32,9 +29,10 @@ namespace teamslink
             }
         }
 
-        public async Task<string> CreateMeeting(string subject) {
-            var meeting = new OnlineMeeting() {Subject = subject};
-            var result = await graphClient.Me.OnlineMeetings.Request().AddAsync(meeting);
+        public async Task<string> CreateMeeting(string subject)
+        {
+            var meeting = new OnlineMeeting() { Subject = subject };
+            var result = await graphClient.Me.OnlineMeetings.PostAsync(meeting);
             return result.JoinWebUrl;
         }
     }

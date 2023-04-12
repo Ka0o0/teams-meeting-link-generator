@@ -21,13 +21,17 @@ namespace teamslink
 
             foreach (var settingsFileLocation in _settingsFiles)
             {
-                if(File.Exists(settingsFileLocation)) {
-                    try {
+                if (File.Exists(settingsFileLocation))
+                {
+                    try
+                    {
                         var json = File.ReadAllText(settingsFileLocation);
                         var settings = JsonSerializer.Deserialize<Settings>(json);
                         return settings;
-                    } catch(Exception) {
-                        Console.Error.WriteLine("Unknown error occured while reading " + settingsFileLocation + " will try next one.");
+                    }
+                    catch (Exception)
+                    {
+                        Console.Error.WriteLine("Unknown error occurred while reading " + settingsFileLocation + " will try next one.");
                     }
                 }
             }
