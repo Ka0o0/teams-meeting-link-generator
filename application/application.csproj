@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <!-- <Protobuf Include="../proto/template_csharp.proto" CompileOutputs="true" GrpcServices="Server" /> -->
+    <!-- <Protobuf Include="../proto/template_csharp.proto" CompileOutputs="true"
+    GrpcServices="Server" /> -->
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Graph" Version="4.54.0" />
+    <PackageReference Include="Microsoft.Graph" Version="5.5.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.52.0" />
     <PackageReference Include="Microsoft.Identity.Client.Extensions.Msal" Version="2.28.0" />
     <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />

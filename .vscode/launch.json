@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/application/bin/Debug/net6.0/application",
+            "program": "${workspaceFolder}/application/bin/Debug/net7.0/application",
             "args": [
                 "generate"
             ],

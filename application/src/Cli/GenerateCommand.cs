@@ -1,6 +1,5 @@
 using System;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.Threading.Tasks;
 
 namespace teamslink
@@ -9,7 +8,7 @@ namespace teamslink
     {
         private static string NAME = "generate";
         private static string DESCRIPTION =
-@"Generate a meeting with link. You can specify a subject as well. The link will be printed out.";
+    @"Generate a meeting with link. You can specify a subject as well. The link will be printed out.";
 
 
         public GenerateCommand() : base(NAME, DESCRIPTION)
