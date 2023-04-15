@@ -1,0 +1,30 @@
+name: Semantic Release
+# Releases are triggered manually for now
+on: workflow_dispatch
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "7.0.x"
+      - name: Setup semantic release
+        run: npm i -g semantic-release
+      - name: Build Application
+        run: dotnet publish application -c Release -o build/linux-amd64 -r linux-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -p:IncludeNativeLibrariesForSelfExtract=true
+      - name: Rename and Move Artifacts
+        run: mkdir dist && mv build/linux-amd64/application dist/tmg-linux-amd64
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
