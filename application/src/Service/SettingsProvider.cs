@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text.Json;
 
@@ -16,6 +17,7 @@ namespace teamslink
 
         private static readonly string[] _settingsFiles = new[] { Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/.tmg.json", "/etc/tmg.json" };
 
+        [DynamicDependency(DynamicallyAccessedMemberTypes.All, typeof(Settings))]
         public static Settings GetSettings()
         {
 
